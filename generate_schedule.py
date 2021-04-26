@@ -24,7 +24,7 @@ def generate(p, d):
 
     # days to sink capacities
     for i in range(d):
-        g[i+d][n-1] = 1
+        g[i+p+1][n-1] = 1
 
     # person to day
     rand = random_sched(p, d)
@@ -44,5 +44,5 @@ def generate(p, d):
 
 
 
-graph = generate(5,5)
+graph = generate(3,5)
 print(graph)
