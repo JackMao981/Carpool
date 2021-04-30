@@ -99,19 +99,52 @@ def print_schedule(g, p, n):
     """
     prints the schedule; row: people, columns: days
     """
+    print( "\t\t", end = '')
+
+    for i in range(1, n-1-p):
+        print("day", i, "\t", end = '')
+
+    print()
     for j in range(1, p+1):
+        print("person", j, "\t", end = '')
         for i in range(p+1, n-1):
             print(round(g[i][j],2), "\t", end = '')
         print("\n")
 
-p = 3
+
+p = 4
 d = 5
 n = p + d + 2
-graph = generate(p,d)
-print("Before\n")
-print_g(graph)
+graph = np.zeros((n,n))
+graph[0][1] = 3/4
+graph[0][2] = 7/4
+graph[0][3] = 5/4
+graph[0][4] = 5/4
+graph[1][5] = 1
+graph[1][7] = 1
+graph[2][5] = 1
+graph[2][6] = 1
+graph[2][7] = 1
+graph[2][8] = 1
+graph[2][9] = 1
+graph[3][5] = 1
+graph[3][6] = 1
+graph[3][8] = 1
+graph[3][9] = 1
+graph[4][5] = 1
+graph[4][6] = 1
+graph[4][8] = 1
+graph[4][9] = 1
+graph[5][10] = 1
+graph[6][10] = 1
+graph[7][10] = 1
+graph[8][10] = 1
+graph[9][10] = 1
+
+# print("Before\n")
+# print_g(graph)
 edmond_karp(graph, n)
 print("schedule\n")
 print_schedule(graph, p, n)
-print("After\n")
-print_g(graph)
+# print("After\n")
+# print_g(graph)
