@@ -11,6 +11,6 @@ There are three files in this repository:
 
 **test.py** : This file contains our test cases to verify correct functionality of our algorithm 
 
-To run our project, open a terminal and run ```bash python test.py``` If you would like
+To run our project, open a terminal and run ```python test.py``` If you would like
 to try deterministic schedules not already in our test cases, then you
 can add a new function in test.py.
