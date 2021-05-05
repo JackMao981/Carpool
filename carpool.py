@@ -3,7 +3,7 @@ import math
 from generate_schedule import *
 
 
-def adjacent(g,node):
+def adjacent(g,node, n):
     """
     find all adjacent nodes of input node in g
 
@@ -18,7 +18,7 @@ def adjacent(g,node):
             result.append(i)
     return result
 
-def bfs(s, t, parent, g):
+def bfs(s, t, parent, g, n):
     """
     breadth first search algorithm
 
@@ -38,7 +38,7 @@ def bfs(s, t, parent, g):
 
     while queue:
         u = queue.pop(0)
-        for idx in adjacent(g, u):
+        for idx in adjacent(g, u, n):
             if visited[idx] == False:
                 parent[idx] = u
                 # print("parent",parent)
@@ -64,8 +64,8 @@ def edmond_karp(g,n):
     sink = len(g) - 1
     parent = [-1]*n
     max_flow = 0
-    while(bfs(source, sink, parent, g)[0]):
-        parent = bfs(source, sink, parent, g)[1]
+    while(bfs(source, sink, parent, g, n)[0]):
+        parent = bfs(source, sink, parent, g, n)[1]
         path_flow = math.inf
         s = sink
         while (s != source):
@@ -110,41 +110,3 @@ def print_schedule(g, p, n):
         for i in range(p+1, n-1):
             print(round(g[i][j],2), "\t", end = '')
         print("\n")
-
-
-p = 4
-d = 5
-n = p + d + 2
-graph = np.zeros((n,n))
-graph[0][1] = 3/4
-graph[0][2] = 7/4
-graph[0][3] = 5/4
-graph[0][4] = 5/4
-graph[1][5] = 1
-graph[1][7] = 1
-graph[2][5] = 1
-graph[2][6] = 1
-graph[2][7] = 1
-graph[2][8] = 1
-graph[2][9] = 1
-graph[3][5] = 1
-graph[3][6] = 1
-graph[3][8] = 1
-graph[3][9] = 1
-graph[4][5] = 1
-graph[4][6] = 1
-graph[4][8] = 1
-graph[4][9] = 1
-graph[5][10] = 1
-graph[6][10] = 1
-graph[7][10] = 1
-graph[8][10] = 1
-graph[9][10] = 1
-
-# print("Before\n")
-# print_g(graph)
-edmond_karp(graph, n)
-print("schedule\n")
-print_schedule(graph, p, n)
-# print("After\n")
-# print_g(graph)
